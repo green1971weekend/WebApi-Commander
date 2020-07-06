@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commander.WebApi", "Commander.WebApi\Commander.WebApi.csproj", "{F54B4113-D23B-4449-99BE-E0F40F61B4CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commander.WebApi", "src\Commander.WebApi\Commander.WebApi.csproj", "{F54B4113-D23B-4449-99BE-E0F40F61B4CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commander.DAL", "Commander.DAL\Commander.DAL.csproj", "{75E3746B-D9F5-40FD-94DD-148A771C9F90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commander.DAL", "src\Commander.DAL\Commander.DAL.csproj", "{75E3746B-D9F5-40FD-94DD-148A771C9F90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comander.BLL", "Comander.BLL\Comander.BLL.csproj", "{B13FADE3-5E9B-4D94-83E0-CE9A4DA13F7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comander.BLL", "src\Comander.BLL\Comander.BLL.csproj", "{B13FADE3-5E9B-4D94-83E0-CE9A4DA13F7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commander.Common", "Commander.Common\Commander.Common.csproj", "{605921BE-19D9-49CC-B28E-619D160841D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commander.Common", "src\Commander.Common\Commander.Common.csproj", "{605921BE-19D9-49CC-B28E-619D160841D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
