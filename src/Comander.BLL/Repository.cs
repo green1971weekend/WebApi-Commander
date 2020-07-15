@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Comander.BLL
 {
-    /// <inheritdoc cref="IEntityRepository"/>
+    /// <inheritdoc cref="IRepository"/>
     public class Repository<T> : IRepository<T> where T : class
     {
         private readonly ApplicationDbContext _context;

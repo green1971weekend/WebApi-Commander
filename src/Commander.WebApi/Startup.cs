@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Comander.BLL;
 using Commander.Common.Interfaces;
 using Commander.DAL.Persistence;
@@ -29,6 +30,7 @@ namespace Commander.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddDbContext<ApplicationDbContext>();
         }

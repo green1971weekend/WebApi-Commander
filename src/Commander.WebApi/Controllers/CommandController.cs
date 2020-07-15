@@ -1,4 +1,6 @@
-﻿using Commander.Common.Interfaces;
+﻿using AutoMapper;
+using Commander.Common.Interfaces;
+using Commander.DAL.DTO;
 using Commander.DAL.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,26 +18,31 @@ namespace Commander.WebApi.Controllers
     public class CommandController : ControllerBase
     {
         private readonly IRepository<Command> _repository;
+        private readonly IMapper _mapper;
 
-        public CommandController(IRepository<Command> repository)
+        public CommandController(IRepository<Command> repository, IMapper mapper)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
-
 
         [HttpGet]
-        public ActionResult<IEnumerable<Command>> GetAllCommands()
+        public ActionResult<IEnumerable<CommandDto>> GetAllCommands()
         {
-            var items = _repository.GetAll().ToList();
-            return Ok(items);
+            var items = _repository.GetAll();
+            return Ok(_mapper.Map<IEnumerable<CommandDto>>(items));
         }
 
-        [HttpGet("getUser")]
-        public ActionResult<Command> GetCommandById(int id)
+        [HttpGet("Single")]
+        public ActionResult<CommandDto> GetCommandById(int id)
         {
             var item = _repository.GetEntityByID(id);
 
-            return Ok(item);
+            if (item != null)
+            {
+                return Ok(_mapper.Map<CommandDto>(item));
+            }
+            return NotFound();
         }
     }
 }

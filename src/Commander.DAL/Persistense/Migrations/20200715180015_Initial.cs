@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Commander.DAL.Persistence.Migrations
+namespace Commander.DAL.Persistense.Migrations
 {
-    public partial class Init : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,9 +13,11 @@ namespace Commander.DAL.Persistence.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(nullable: true),
-                    Line = table.Column<string>(nullable: true),
-                    Platform = table.Column<string>(nullable: true)
+                    Description = table.Column<string>(maxLength: 250, nullable: false),
+                    Line = table.Column<string>(nullable: false),
+                    Platform = table.Column<string>(nullable: false),
+                    LengthAmount = table.Column<int>(nullable: false),
+                    PublicationDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

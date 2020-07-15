@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Commander.DAL.Models
 {
@@ -34,5 +32,15 @@ namespace Commander.DAL.Models
         /// Platform in which the command runs.
         /// </summary>
         public string Platform { get; set; }
+
+        /// <summary>
+        /// Amount of characters.
+        /// </summary>
+        public int LengthAmount { get; set; }
+
+        /// <summary>
+        /// Publication date.
+        /// </summary>
+        public DateTime PublicationDate { get; set; }
     }
 }
