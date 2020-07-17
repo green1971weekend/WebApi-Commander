@@ -13,6 +13,18 @@ namespace Commander.Common.Interfaces
     public interface IRepository<T> where T: class
     {
         /// <summary>
+        /// Save all changes to database.
+        /// </summary>
+        /// <returns></returns>
+        bool SaveChanges();
+
+        /// <summary>
+        /// Create new entity.
+        /// </summary>
+        /// <param name="entity">Entity.</param>
+        void CreateEntity(T entity);
+
+        /// <summary>
         /// Get all specific entities.
         /// </summary>
         /// <returns>IEnumerable entities.</returns>
@@ -24,5 +36,17 @@ namespace Commander.Common.Interfaces
         /// <param name="id">Entity id.</param>
         /// <returns>T entity.</returns>
         T GetEntityByID(int id);
+
+        /// <summary>
+        /// Update existing entity.
+        /// </summary>
+        /// <param name="entity">Entity model.</param>
+        void UpdateEntity(T entity);
+
+        /// <summary>
+        /// Delete existing entity from the database.
+        /// </summary>
+        /// <param name="entity">Entity model.</param>
+        void DeleteEntity(T entity);
     }
 }

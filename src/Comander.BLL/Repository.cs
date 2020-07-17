@@ -24,6 +24,17 @@ namespace Comander.BLL
         }
 
         /// <inheritdoc/>
+        public void CreateEntity(T entity)
+        {
+            if(entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            _dbSet.Add(entity);
+        }
+
+        /// <inheritdoc/>
         public IEnumerable<T> GetAll()
         {
             return _dbSet.ToList();
@@ -33,6 +44,32 @@ namespace Comander.BLL
         public T GetEntityByID(int id)
         {
             return  _dbSet.Find(id);
+        }
+
+        /// <inheritdoc/>
+        public void UpdateEntity(T entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+            _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        /// <inheritdoc/>
+        public void DeleteEntity(T entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+            _dbSet.Remove(entity);
+        }
+
+        /// <inheritdoc/>
+        public bool SaveChanges()
+        {
+           return _context.SaveChanges() >= 0;
         }
     }
 }

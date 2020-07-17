@@ -8,7 +8,9 @@ namespace Commander.BLL.Mapping
     {
         public CommandProfile()
         {
-            CreateMap<Command, CommandDto>();
+            CreateMap<Command, CommandReadDto>();
+
+            CreateMap<CommandCreateDto, Command>();
         }
     }
 }

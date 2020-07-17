@@ -27,22 +27,70 @@ namespace Commander.WebApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<CommandDto>> GetAllCommands()
+        public ActionResult<IEnumerable<CommandReadDto>> GetAllCommands()
         {
-            var items = _repository.GetAll();
-            return Ok(_mapper.Map<IEnumerable<CommandDto>>(items));
+            var commands = _repository.GetAll();
+            return Ok(_mapper.Map<IEnumerable<CommandReadDto>>(commands));
         }
 
         [HttpGet("Single")]
-        public ActionResult<CommandDto> GetCommandById(int id)
+        public ActionResult<CommandReadDto> GetCommandById(int id)
         {
-            var item = _repository.GetEntityByID(id);
+            var command = _repository.GetEntityByID(id);
 
-            if (item != null)
+            if (command != null)
             {
-                return Ok(_mapper.Map<CommandDto>(item));
+                return Ok(_mapper.Map<CommandReadDto>(command));
             }
             return NotFound();
+        }
+
+        [HttpPost]
+        public ActionResult<CommandReadDto> CreateCommand(CommandCreateDto commandCreateDto)
+        {
+            if (commandCreateDto == null)
+            {
+                throw new ArgumentNullException(nameof(commandCreateDto));
+            }
+
+            var command = _mapper.Map<Command>(commandCreateDto);
+
+            _repository.CreateEntity(command);
+            _repository.SaveChanges();
+
+            return Ok();
+        }
+
+
+        [HttpPut("{id}")]
+        public ActionResult UpdateCommand(int id, CommandCreateDto commandCreateDto)
+        {
+            var commandModelFromRepo = _repository.GetEntityByID(id);
+            if (commandModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(commandCreateDto, commandModelFromRepo);
+
+            _repository.UpdateEntity(commandModelFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteCommand(int id)
+        {
+            var commandModelFromRepo = _repository.GetEntityByID(id);
+            if (commandModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _repository.DeleteEntity(commandModelFromRepo);
+            _repository.SaveChanges();
+
+            return Ok();
         }
     }
 }
